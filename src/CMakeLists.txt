@@ -36,10 +36,10 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick Widgets PrintS
 set(QT_SDK_DIR "${Qt${QT_VERSION_MAJOR}_DIR}/../../..")
 cmake_path(SET QT_SDK_DIR NORMALIZE ${QT_SDK_DIR})
 
-#设置QML插件输出目录，可以通过外部设置，如果外部没有设置就默认到<QT_SDK_DIR_PATH>\qml\FluentUI目录下
+#设置QML插件输出目录，可以通过外部设置，如果外部没有设置就默认到项目构建目录，避免权限问题
 set(FLUENTUI_QML_PLUGIN_DIRECTORY "" CACHE PATH "Path to FluentUI plugin")
 if (NOT FLUENTUI_QML_PLUGIN_DIRECTORY)
-    set(FLUENTUI_QML_PLUGIN_DIRECTORY ${QT_SDK_DIR}/qml/FluentUI)
+    set(FLUENTUI_QML_PLUGIN_DIRECTORY ${CMAKE_BINARY_DIR}/qml/FluentUI)
 endif ()
 
 #国际化
